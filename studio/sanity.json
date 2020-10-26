@@ -1,0 +1,33 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "hinqmch5",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "Midway",
+    "basePath": "/"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "@sanity/color-input",
+    "media",
+    "tabs",
+    "seo-tools",
+    "@sanity/vision"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schemas.ts"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.tsx"
+    }
+  ]
+}
