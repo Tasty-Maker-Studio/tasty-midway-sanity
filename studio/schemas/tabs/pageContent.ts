@@ -1,4 +1,4 @@
-import Tabs from 'sanity-plugin-tabs'
+import Tabs from 'sanity-plugin-tabs';
 
 export default {
   name: "pageContent",

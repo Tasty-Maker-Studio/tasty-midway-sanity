@@ -1,11 +1,11 @@
 {
   "root": true,
   "api": {
-    "projectId": "hinqmch5",
+    "projectId": "fhy9rtix",
     "dataset": "production"
   },
   "project": {
-    "name": "Midway",
+    "name": "tastymakers",
     "basePath": "/"
   },
   "plugins": [

@@ -5,8 +5,8 @@ export default {
   type: "object",
   inputComponent: Tabs,
   fieldsets: [
-    { name: "main", title: "Main" },
-    { name: "shopify", title: "Shopify" }
+    {name: "main", title: "Main"},
+    {name: "shopify", title: "Shopify"}
   ],
   fields: [
     {
