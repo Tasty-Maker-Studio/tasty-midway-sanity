@@ -94,8 +94,8 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
             {variants.length > 1 && (
               <div className='x'>
                 <select onChange={handleChange} className='x p1'>
-                  {variants.map(({ id, title, available }: {id: string, title: string, available: boolean}) => (
-                    <option disabled={!available} key={id} value={id}>{title}</option>
+                  {variants.map(({ id, title, vAvailable }: {id: string, title: string, vAvailable: boolean}) => (
+                    <option disabled={!vAvailable} key={id} value={id}>{title}</option>
                   ))}
                 </select>
               </div>
@@ -126,7 +126,7 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
           <div>
             {available ? (
               <span>Checking Stock</span>
-            ): 
+            ):
               waitlist ? (
                 <div className='mt1 pt1'>
                   <h5>Get notifed when stock is replenished</h5>

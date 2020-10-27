@@ -1,13 +1,16 @@
 import React from 'react';
 
 
-
-export const Home:React.FC = ()=>{
+const Home:React.FC = () =>{
 
   return (
-    <>
-      Welcome to your new Home.
-    </>
+    <div>
+      <h2>
+        Welcome to your new Home.
+      </h2>
+    </div>
   )
 
 }
+
+export default Home;

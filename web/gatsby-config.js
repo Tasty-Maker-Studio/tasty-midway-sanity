@@ -19,7 +19,7 @@ module.exports = {
     title: `Midway`,
     description: `Gatsby + Sanity + Shopify Repo`,
     siteUrl: `https://midway.ctrlaltdel.world`,
-    author: `iamkevingreen`,
+    author: `willstreeter`,
     password: true
   },
   plugins: [
@@ -107,7 +107,7 @@ module.exports = {
         ]
       }
     },
-  
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
