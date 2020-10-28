@@ -196,7 +196,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
         }
       }`)
         .then(res => {
-
+         console.log('lambada/shopify-sync.ts  res =', res);
 
           if (!res.content) {
             return updateEverything(data)

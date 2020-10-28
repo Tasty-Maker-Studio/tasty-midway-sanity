@@ -20,7 +20,7 @@ module.exports = {
     description: `Gatsby + Sanity + Shopify Repo`,
     siteUrl: `https://mystified-junk.myshopify.com`,
     author: `will streeter`,
-    password: false
+    password: true
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
