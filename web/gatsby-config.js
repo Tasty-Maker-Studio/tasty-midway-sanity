@@ -8,7 +8,7 @@ module.exports = {
     app.use(
       '/.netlify/functions/',
       proxy({
-        target: 'http://localhost:34567',
+        target: 'http://localhost:8000',
         pathRewrite: {
           '/.netlify/functions/': ''
         }
@@ -18,7 +18,7 @@ module.exports = {
   siteMetadata: {
     title: `Midway`,
     description: `Gatsby + Sanity + Shopify Repo`,
-    siteUrl: `https://midway.ctrlaltdel.world`,
+    siteUrl: `mystified-junk.myshopify.com`,
     author: `willstreeter`,
     password: true
   },
@@ -52,13 +52,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `midway`,
-        short_name: `midway`,
+        name: `tasty-midway-maker`,
+        short_name: `tastymidway`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/favicon/apple-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon/apple-icon.png`,
       },
     },
     {
