@@ -8,7 +8,7 @@ module.exports = {
     app.use(
       '/.netlify/functions/',
       proxy({
-        target: 'http://localhost:8000',
+        target: 'http://localhost:34567',
         pathRewrite: {
           '/.netlify/functions/': ''
         }
@@ -16,11 +16,11 @@ module.exports = {
     )
   },
   siteMetadata: {
-    title: `Midway`,
+    title: `Tasty Midway`,
     description: `Gatsby + Sanity + Shopify Repo`,
     siteUrl: `https://mystified-junk.myshopify.com`,
-    author: `willstreeter`,
-    password: true
+    author: `will streeter`,
+    password: false
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

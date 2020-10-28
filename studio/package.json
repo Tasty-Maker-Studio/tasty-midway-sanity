@@ -1,8 +1,8 @@
 {
   "private": false,
-  "name": "example-studio",
+  "name": "tasty-midway",
   "version": "1.0.0",
-  "author": "Kevin Green",
+  "author": "will streeter",
   "scripts": {
     "deploy": "npm run graphql-deploy && npm run sanity-deploy",
     "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",

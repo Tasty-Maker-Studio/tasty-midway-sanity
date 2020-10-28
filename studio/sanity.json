@@ -5,7 +5,7 @@
     "dataset": "production"
   },
   "project": {
-    "name": "tastymakers",
+    "name": "tasty-midway",
     "basePath": "/"
   },
   "plugins": [

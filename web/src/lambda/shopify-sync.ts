@@ -2,8 +2,7 @@ require("dotenv").config();
 import { APIGatewayEvent } from 'aws-lambda'
 import sanityClient from '@sanity/client'
 import { statusReturn } from "./requestConfig";
-import crypto from 'crypto'
-import _ from 'lodash'
+import * as crypto from 'crypto';
 
 import fetch from 'node-fetch'
 
@@ -22,6 +21,7 @@ const client = sanityClient({
 });
 
 const updateEverything = async (data: {
+  image: null;
   id: number
   title: string
   variants: any[]
@@ -69,7 +69,8 @@ const updateEverything = async (data: {
     // === Patch Product Image
     //
 
-    const shopifyImage = data.image ? data.image.src : null
+    // @ts-ignore
+    const shopifyImage = data?.image &&  data.image?.src ? data.image.src : null
 
     try {
       if (shopifyImage) {
@@ -218,12 +219,13 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
           if (!image || title !== data.title || current !== data.handle || defaultVariant.price !== data.variants[0].price) {
             return updateEverything(data)
           } else {
-            // Check if more variants then currently stored and rebuild  
+            // Check if more variants then currently stored and rebuild
             if (variants.length === data.variants.length) {
               // Check if nested variant information has changed
               let triggerRebuild = false
               variants.forEach((v, i) => {
                 const { productId, variantTitle, variantId } = v.content.shopify
+                // tslint:disable-next-line:no-shadowed-variable
                 const { id, title, product_id } = data.variants[i]
                 if (productId !== product_id || variantId !== id || variantTitle !== title) {
                   console.log(`variant ${variantId} of ${variantTitle} has changed`)
@@ -255,7 +257,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
     // sets the "deleted" boolean to true
     // you could likely use this value in Gatsby to decide whether to render the item or not
 
-    // tread carefully: 
+    // tread carefully:
     return client
       .patch(data.id.toString())
       .set({ 'content.shopify.deleted': true })
