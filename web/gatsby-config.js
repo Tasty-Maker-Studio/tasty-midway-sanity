@@ -18,7 +18,7 @@ module.exports = {
   siteMetadata: {
     title: `Midway`,
     description: `Gatsby + Sanity + Shopify Repo`,
-    siteUrl: `mystified-junk.myshopify.com`,
+    siteUrl: `https://mystified-junk.myshopify.com`,
     author: `willstreeter`,
     password: true
   },
