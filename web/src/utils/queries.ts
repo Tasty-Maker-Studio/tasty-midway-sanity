@@ -37,7 +37,7 @@ const productQuery = `
   }
 `
 
-module.exports = {
+export {
   pageQuery,
   productQuery
 }

@@ -43,6 +43,7 @@ const Product = ({
   }, [0])
 
   const url = `products/${slug.current}`
+  console.log('Product.tsx --- shopify =', shopify);
   return (
     <div className='ac x'>
       {preview && (

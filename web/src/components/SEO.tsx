@@ -1,9 +1,23 @@
 import React from "react"
 import Helmet from "react-helmet"
 
-const siteRoute = "https://midway-starter.netlify.com"
+const siteRoute = "https://tasty-midway-maker.netlify.com"
 
-export const SEO = ({
+interface SEOProps {
+  pagePath: string;
+  metaInfo: {
+    metaTitle?: string;
+    metaDescription?: string;
+    openImage?: string;
+    twitterImage?: string;
+    twitterTitle?: string;
+    openTitle?: string;
+    openGraphDescription?: string;
+    twitterDescription?: string;
+  }
+}
+
+export const SEO: React.FC<SEOProps> = ({
   pagePath,
   metaInfo,
 }: {
@@ -22,8 +36,8 @@ export const SEO = ({
   const title = metaInfo
     ? metaInfo.metaTitle
       ? metaInfo.metaTitle
-      : "Midway"
-    : "Midway"
+      : "tasty-midway"
+    : "tasty-midway"
   const metaDescription = metaInfo
     ? metaInfo.metaDescription
       ? metaInfo.metaDescription

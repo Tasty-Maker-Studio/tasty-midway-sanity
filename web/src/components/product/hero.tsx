@@ -1,44 +1,78 @@
-import React from 'react'
+import React from "react";
 
-import BlockContent from "@sanity/block-content-to-react"
+import BlockContent from "@sanity/block-content-to-react";
 
-import { Serializer } from "src/utils/serializer"
-import { Image } from 'src/components/image'
-import { ProductForm } from './form'
+import { Serializer } from "src/utils/serializer";
+import { Image } from "src/components/image";
+import { ProductForm } from "./form";
 
-export const ProductHero = ({ product, main: { title, productDescription, linkedSite, linkedSiteName, mainImage }}: {
+
+export interface ProductHeroProps {
   main: {
-    title?: string
-    subTitle?: string
-    slug: {}
-    productDescription?: []
+    title?: string | undefined,
+    subTitle?: string | undefined,
+    slug: {},
+    productDescription?: [],
+    mainImage?: {
+      asset: {
+        _id: string,
+      };
+    };
+    linkedSite: string,
+    linkedSiteName: string,
+    cerealImage: {},
+  };
+  product: {
+    defaultPrice: string,
+    productId: number,
+  };
+}
+export const ProductHero: React.FC<ProductHeroProps> = ({
+  product,
+  main: { title, productDescription, linkedSite, linkedSiteName, mainImage },
+}: {
+  main: {
+    title?: string;
+    subTitle?: string;
+    slug: {};
+    productDescription?: [];
     mainImage: {
       asset: {
-        _id: string
-      }
-    }
-    linkedSite: string
-    linkedSiteName: string
-    cerealImage: {}
-  }
+        _id: string;
+      };
+    };
+    linkedSite: string;
+    linkedSiteName: string;
+    cerealImage: {};
+  };
   product: {
-    defaultPrice: string
-    productId: number
-  }
+    defaultPrice: string;
+    productId: number;
+  };
 }) => {
+  // console.log('[product/hero.tsx  main = ', main)
   return (
-    <div className='product__hero'>
-      <div className='container--xl p1 outer mxa'>
-        <div className='f fw jcb aic'>
-          <div className='c50 x'>
-            <Image className='x' imageId={mainImage.asset._id} alt={title} />
+    <div className="product__hero">
+      <div className="container--xl p1 outer mxa">
+        <div className="f fw jcb aic">
+          <div className="c50 x">
+            <Image className="x" imageId={mainImage.asset._id} alt={title} />
           </div>
-          <div className='c50 container--s mxa'>
+          <div className="c50 container--s mxa">
             <h1>{title}</h1>
-            {productDescription && (<BlockContent blocks={productDescription} serializers={Serializer} />)}
+            {productDescription && (
+              <BlockContent
+                blocks={productDescription}
+                serializers={Serializer}
+              />
+            )}
             {linkedSite && linkedSiteName && (
-              <div className='callout bcblue cw p1 my1'>
-                Shop the real product on the <a href={linkedSite} className='cw underline' target='_blank'>{linkedSiteName}</a> Website.
+              <div className="callout bcblue cw p1 my1">
+                Shop the real product on the{" "}
+                <a href={linkedSite} className="cw underline" target="_blank">
+                  {linkedSiteName}
+                </a>{" "}
+                Website.
               </div>
             )}
             <ProductForm {...product} showQuantity={true} />
@@ -46,5 +80,5 @@ export const ProductHero = ({ product, main: { title, productDescription, linked
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
