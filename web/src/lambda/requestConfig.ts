@@ -1,18 +1,15 @@
-const {
-  SHOPIFY_TOKEN,
-  SHOPIFY_GRAPHQL_URL
-} = process.env
+const { SHOPIFY_TOKEN, SHOPIFY_GRAPHQL_URL } = process.env;
 
 const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json'
-}
+  'Content-Type': 'application/json',
+};
 
 const shopifyConfig = {
   'Content-Type': 'application/json',
-  'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN
-}
+  'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN,
+};
 
 const CUSTOMER_ADDRESS_QUERY = `
   firstName
@@ -25,7 +22,7 @@ const CUSTOMER_ADDRESS_QUERY = `
   country
   province
   zip
-`
+`;
 
 const CUSTOMER_QUERY = `query customerQuery($customerAccessToken: String!){
   customer(customerAccessToken: $customerAccessToken) {
@@ -69,7 +66,7 @@ const CUSTOMER_QUERY = `query customerQuery($customerAccessToken: String!){
       }
     }
   }
-}`
+}`;
 
 const CUSTOMER_TOKEN_QUERY = `mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
   customerAccessTokenCreate(input: $input) {
@@ -83,7 +80,7 @@ const CUSTOMER_TOKEN_QUERY = `mutation customerAccessTokenCreate($input: Custome
     }
   }
 }
-`
+`;
 const CUSTOMER_RECOVERY_QUERY = `mutation customerRecover($email: String!) {
   customerRecover(email: $email) {
     userErrors {
@@ -91,7 +88,7 @@ const CUSTOMER_RECOVERY_QUERY = `mutation customerRecover($email: String!) {
       message
     }
   }
-}`
+}`;
 
 const CUSTOMER_LOGOUT_QUERY = `mutation customerAccessTokenDelete($customerAccessToken: String!) {
   customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
@@ -102,7 +99,7 @@ const CUSTOMER_LOGOUT_QUERY = `mutation customerAccessTokenDelete($customerAcces
     deletedAccessToken
     deletedCustomerAccessTokenId
   }
-}`
+}`;
 
 const CUSTOMER_CREATE_QUERY = `mutation customerCreate($input: CustomerCreateInput!) {
   customerCreate(input: $input) {
@@ -118,7 +115,7 @@ const CUSTOMER_CREATE_QUERY = `mutation customerCreate($input: CustomerCreateInp
       message
     }
   }
-}`
+}`;
 
 const CUSTOMER_RESET_QUERY = `mutation customerReset($id: ID!, $input: CustomerResetInput!) {
   customerReset(id: $id, input: $input) {
@@ -130,7 +127,7 @@ const CUSTOMER_RESET_QUERY = `mutation customerReset($id: ID!, $input: CustomerR
       email
     }
   }
-}`
+}`;
 
 const CUSTOMER_ACTIVATE_QUERY = `mutation customerActivate($id: ID!, $input: CustomerActivateInput!) {
   customerActivate(id: $id, input: $input) {
@@ -142,22 +139,83 @@ const CUSTOMER_ACTIVATE_QUERY = `mutation customerActivate($id: ID!, $input: Cus
       email
     }
   }
-}`
+}`;
+
+//
+// == PRODUCTS ===
+//
+
+const PRODUCT_QUERY = `query getProduct($id: ID!) {
+  node(id: $id) {
+    ... on Product {
+      id
+      handle
+      title
+      totalVariants
+      images(first: 100) {
+        edges {
+          node {
+            id
+            originalSrc
+          }
+        }
+      }
+      variants(first: 100) {
+        edges {
+          node {
+            id
+            title
+            price
+            displayName
+          }
+        }
+      }
+      metafield(namespace: "sync", key: "productData") {
+        value
+        id
+      }
+    }
+  }
+}
+`;
+
+const PRODUCT_UPDATE = `mutation productMetaUpdate($input: ProductInput!) {
+  productUpdate(input: $input) {
+    product {
+      metafields(first: 100) {
+        edges {
+          node {
+            id
+            namespace
+            key
+            value
+          }
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}`;
 
 const statusReturn = (code: number, body: {}) => {
+  console.log('[../requestConfig]: statusReturn -- code ', code);
+  console.log('[../requestConfig]: statusReturn -- body ', body);
   return {
     statusCode: code,
     headers,
-    body: JSON.stringify(body)
-  }
-}
+    body: JSON.stringify(body),
+  };
+};
 
 const preparePayload = (query, v: {}) => {
   return {
     query,
-    variables: v
-  }
-}
+    variables: v,
+  };
+};
 
 export {
   headers,
@@ -171,5 +229,7 @@ export {
   CUSTOMER_LOGOUT_QUERY,
   CUSTOMER_CREATE_QUERY,
   CUSTOMER_RESET_QUERY,
-  CUSTOMER_ACTIVATE_QUERY
-}
+  CUSTOMER_ACTIVATE_QUERY,
+  PRODUCT_QUERY,
+  PRODUCT_UPDATE,
+};

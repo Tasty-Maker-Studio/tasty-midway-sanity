@@ -6,7 +6,7 @@ const moduleQuery = `
       linkedPage->
     }
   }
-`
+`;
 
 const pageQuery = `
   ...,
@@ -20,7 +20,7 @@ const pageQuery = `
       }
     }
   }
-`
+`;
 
 const productQuery = `
   ...,
@@ -35,9 +35,6 @@ const productQuery = `
       }
     }
   }
-`
+`;
 
-export {
-  pageQuery,
-  productQuery
-}
+export { pageQuery, productQuery };

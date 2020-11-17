@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export default {
+export const standardText = {
   title: 'Standard Text',
   name: 'standardText',
   type: 'object',
@@ -15,22 +15,22 @@ export default {
           title: 'Block',
           type: 'block',
           styles: [
-            {title: 'Normal', value: 'normal'},
-            {title: 'H1', value: 'h1'},
-            {title: 'H2', value: 'h2'},
-            {title: 'H2 - Question', value: 'h2-question'},
-            {title: 'H3', value: 'h3'},
-            {title: 'H4', value: 'h4'},
-            {title: 'H5', value: 'h5'},
-            {title: 'H6', value: 'h6'},
-            {title: 'Quote', value: 'blockquote'}
+            { title: 'Normal', value: 'normal' },
+            { title: 'H1', value: 'h1' },
+            { title: 'H2', value: 'h2' },
+            { title: 'H2 - Question', value: 'h2-question' },
+            { title: 'H3', value: 'h3' },
+            { title: 'H4', value: 'h4' },
+            { title: 'H5', value: 'h5' },
+            { title: 'H6', value: 'h6' },
+            { title: 'Quote', value: 'blockquote' },
           ],
           // Marks let you mark up inline text in the block editor.
           marks: {
             // Annotations can be any object structure – e.g. a link or a footnote.
             decorators: [
               { value: 'strong', title: 'Strong' },
-							{ value: 'italic', title: 'Italic' },
+              { value: 'italic', title: 'Italic' },
               { value: 'underline', title: 'Underline' },
               { value: 'code', title: 'Code' },
               {
@@ -39,10 +39,14 @@ export default {
                 blockEditor: {
                   icon: () => 'T',
                   render: (props) => (
-                    <span style={{ backgroundColor: '#ccc', fontWeight: '300' }}>{props.children}</span>
-                  )
-                }
-              }
+                    <span
+                      style={{ backgroundColor: '#ccc', fontWeight: '300' }}
+                    >
+                      {props.children}
+                    </span>
+                  ),
+                },
+              },
             ],
             annotations: [
               {
@@ -53,24 +57,24 @@ export default {
                   {
                     title: 'URL',
                     name: 'href',
-                    type: 'url'
-                  }
-                ]
-              }
-            ]
+                    type: 'url',
+                  },
+                ],
+              },
+            ],
           },
         },
-      ]
-    }
+      ],
+    },
   ],
   preview: {
     select: {
-      title: ''
+      title: '',
     },
-    prepare (selection) {
+    prepare(selection) {
       return Object.assign({}, selection, {
-        title: 'Standard Text'
-      })
-    }
-  }
-}
+        title: 'Standard Text',
+      });
+    },
+  },
+};

@@ -1,4 +1,3 @@
-
 /* Midway Specific Styles, feel free to remove */
 @import './midway/_learn.css';
 @import './midway/_button.css';
@@ -22,8 +21,6 @@
 
 /* Page animations */
 @import './lib/_animate.css';
-
-
 
 body {
   background-color: #f4f4f4;

@@ -1,7 +1,7 @@
-import React from "react"
-import Helmet from "react-helmet"
+import React from 'react';
+import Helmet from 'react-helmet';
 
-const siteRoute = "https://tasty-midway-maker.netlify.com"
+const siteRoute = 'https://tasty-midway-maker.netlify.com';
 
 interface SEOProps {
   pagePath: string;
@@ -14,66 +14,66 @@ interface SEOProps {
     openTitle?: string;
     openGraphDescription?: string;
     twitterDescription?: string;
-  }
+  };
 }
 
 export const SEO: React.FC<SEOProps> = ({
   pagePath,
   metaInfo,
 }: {
-  pagePath: string
+  pagePath: string;
   metaInfo: {
-    metaTitle?: string
-    metaDescription?: string
-    openImage?: string
-    twitterImage?: string
-    twitterTitle?: string
-    openTitle?: string
-    openGraphDescription?: string
-    twitterDescription?: string
-  }
+    metaTitle?: string;
+    metaDescription?: string;
+    openImage?: string;
+    twitterImage?: string;
+    twitterTitle?: string;
+    openTitle?: string;
+    openGraphDescription?: string;
+    twitterDescription?: string;
+  };
 }) => {
   const title = metaInfo
     ? metaInfo.metaTitle
       ? metaInfo.metaTitle
-      : "tasty-midway"
-    : "tasty-midway"
+      : 'tasty-midway'
+    : 'tasty-midway';
   const metaDescription = metaInfo
     ? metaInfo.metaDescription
       ? metaInfo.metaDescription
-      : "Midway is an Open source Headless  Shopify + Sanity starter."
-    : "Midway is an Open source Headless  Shopify + Sanity starter."
-  const metaKeywords = "midway, sanity, shopify, graphql, starter"
+      : 'Midway is an Open source Headless  Shopify + Sanity starter.'
+    : 'Midway is an Open source Headless  Shopify + Sanity starter.';
+  const metaKeywords = 'midway, sanity, shopify, graphql, starter';
   const ogImage = metaInfo
     ? metaInfo.openImage
       ? metaInfo.openImage.asset.url
-      : ""
-    : ""
+      : ''
+    : '';
   const twitterImage = metaInfo
     ? metaInfo.twitterImage
       ? metaInfo.twitterImage.asset.url
-      : ""
-    : ""
+      : ''
+    : '';
   const openTitle = metaInfo
     ? metaInfo.openTitle
       ? metaInfo.openTitle
       : title
-    : title
+    : title;
   const openGraphDescription = metaInfo
     ? metaInfo.openGraphDescription
       ? metaInfo.openGraphDescription
       : metaDescription
-    : metaDescription
+    : metaDescription;
   const twitterTitle = metaInfo
     ? metaInfo.twitterTitle
       ? metaInfo.twitterTitle
       : title
-    : title
+    : title;
   const twitterDescription = metaInfo
     ? metaInfo.twitterDescription
       ? metaInfo.twitterDescription
       : metaDescription
-    : metaDescription
+    : metaDescription;
   return (
     <Helmet title={title}>
       <html lang="en" />
@@ -83,7 +83,7 @@ export const SEO: React.FC<SEOProps> = ({
       <meta name="keywords" content={metaKeywords} />
       <meta
         property="og:url"
-        content={`${siteRoute}/${pagePath ? pagePath : ""}`}
+        content={`${siteRoute}/${pagePath ? pagePath : ''}`}
       />
       <meta property="og:image" content={ogImage} />
       <meta property="og:title" content={`${openTitle}`} />
@@ -96,8 +96,8 @@ export const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:description" content={twitterDescription} />
       <meta
         name="twitter:url"
-        content={`${siteRoute}/${pagePath ? pagePath : ""}`}
+        content={`${siteRoute}/${pagePath ? pagePath : ''}`}
       />
     </Helmet>
-  )
-}
+  );
+};

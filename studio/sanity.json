@@ -1,12 +1,19 @@
 {
   "root": true,
+  "project": {
+    "name": "tasty-midway",
+    "basePath": "/"
+  },
   "api": {
     "projectId": "fhy9rtix",
     "dataset": "production"
   },
-  "project": {
-    "name": "tasty-midway",
-    "basePath": "/"
+  "env": {
+    "development": {
+      "api": {
+        "dataset": "production"
+      }
+    }
   },
   "plugins": [
     "@sanity/base",
@@ -14,11 +21,13 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
+    "@sane-shopify/sanity-plugin",
+    "@sanity/vision",
     "@sanity/color-input",
+    "video-embed",
     "media",
-    "tabs",
     "seo-tools",
-    "@sanity/vision"
+    "tabs"
   ],
   "parts": [
     {
@@ -27,7 +36,11 @@
     },
     {
       "name": "part:@sanity/desk-tool/structure",
-      "path": "./deskStructure.tsx"
+      "path": "./deskStructure.ts"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.ts"
     }
   ]
 }

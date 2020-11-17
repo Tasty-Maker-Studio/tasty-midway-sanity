@@ -19,7 +19,7 @@
 
   &__element {
     transition-property: all;
-    transition: .5s cubic-bezier(.36,-.64,.34,1.76)
+    transition: 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
   }
 }
 

@@ -1,6 +1,11 @@
 {
   "extends": "../web/tsconfig",
-  "include": ["./typings/*.d.ts", "../@sanity/base/src/@types/*.d.ts", "./**/*.tsx", "./**/*.ts"],
+  "include": [
+    "./typings/*.d.ts",
+    "../@sanity/base/src/@types/*.d.ts",
+    "./**/*.tsx",
+    "./**/*.ts"
+  ],
   "compilerOptions": {
     "outDir": "./lib",
     "jsx": "react"

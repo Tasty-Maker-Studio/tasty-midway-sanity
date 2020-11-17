@@ -1,30 +1,29 @@
-import React from "react";
+import React from 'react';
 
-import BlockContent from "@sanity/block-content-to-react";
+import BlockContent from '@sanity/block-content-to-react';
 
-import { Serializer } from "src/utils/serializer";
-import { Image } from "src/components/image";
-import { ProductForm } from "./form";
-
+import { Serializer } from 'src/utils/serializer';
+import { Image } from 'src/components/image';
+import { ProductForm } from './form';
 
 export interface ProductHeroProps {
   main: {
-    title?: string | undefined,
-    subTitle?: string | undefined,
-    slug: {},
-    productDescription?: [],
+    title?: string | undefined;
+    subTitle?: string | undefined;
+    slug: {};
+    productDescription?: [];
     mainImage?: {
       asset: {
-        _id: string,
+        _id: string;
       };
     };
-    linkedSite: string,
-    linkedSiteName: string,
-    cerealImage: {},
+    linkedSite: string;
+    linkedSiteName: string;
+    cerealImage: {};
   };
   product: {
-    defaultPrice: string,
-    productId: number,
+    defaultPrice: string;
+    productId: number;
   };
 }
 export const ProductHero: React.FC<ProductHeroProps> = ({
@@ -68,10 +67,10 @@ export const ProductHero: React.FC<ProductHeroProps> = ({
             )}
             {linkedSite && linkedSiteName && (
               <div className="callout bcblue cw p1 my1">
-                Shop the real product on the{" "}
+                Shop the real product on the{' '}
                 <a href={linkedSite} className="cw underline" target="_blank">
                   {linkedSiteName}
-                </a>{" "}
+                </a>{' '}
                 Website.
               </div>
             )}

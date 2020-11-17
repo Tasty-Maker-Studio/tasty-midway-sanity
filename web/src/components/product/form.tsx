@@ -1,151 +1,202 @@
-import React, { useEffect, useState } from 'react'
-import { encode, decode } from 'shopify-gid'
+import React, { useEffect, useState } from 'react';
+import { encode, decode } from 'shopify-gid';
 
-import { Waitlist } from 'src/components/product/waitlist'
-import { client, useAddItemToCart } from 'src/context/siteContext'
+import { Waitlist } from 'src/components/product/waitlist';
+import { client, useAddItemToCart } from 'src/context/siteContext';
 
-export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
-  defaultPrice: string
+export const ProductForm = ({
+  slug,
+  defaultPrice,
+  productId,
+  showQuantity,
+  waitlist = true,
+  addText,
+}: {
+  defaultPrice: string;
   slug?: {
-    current: string
-  }
-  productId: number
-  waitlist?: boolean | true
-  showQuantity?: boolean | true
-  addText?: string
+    current: string;
+  };
+  productId: number;
+  waitlist?: boolean | true;
+  showQuantity?: boolean | true;
+  addText?: string;
 }) => {
-  const addItemToCart = useAddItemToCart()
+  const addItemToCart = useAddItemToCart();
 
-  const [quantity, setQuantity] = useState(1 as number)
-  const [adding, setAdding] = useState(false as boolean)
-  const [price, setPrice] = useState(defaultPrice)
-  const [available, setAvailable] = useState(false)
-  const [variants, setVariants] = useState([])
-  const [activeVariantId, setActiveVariantId] = useState('' as string)
-  const [compareAtPrice, setCompareAtPrice] = useState(undefined as string | undefined)
-  const [check, setCheck] = useState(true)
+  const [quantity, setQuantity] = useState(1 as number);
+  const [adding, setAdding] = useState(false as boolean);
+  const [price, setPrice] = useState(defaultPrice);
+  const [available, setAvailable] = useState(false);
+  const [variants, setVariants] = useState([]);
+  const [activeVariantId, setActiveVariantId] = useState('' as string);
+  const [compareAtPrice, setCompareAtPrice] = useState(
+    undefined as string | undefined,
+  );
+  const [check, setCheck] = useState(true);
 
   const [gift, setGift] = useState({
     giftEmail: '',
-    giftMessage: ''
-  })
+    giftMessage: '',
+  });
 
-  const form = React.createRef()
+  const form = React.createRef();
 
   useEffect(() => {
     if (check) {
-      const shopifyId = encode("Product", productId, {
+      const shopifyId = encode('Product', productId, {
         accessToken: process.env.GATSBY_SHOPIFY_TOKEN,
-      })
+      });
 
       client.product.fetch(shopifyId).then((product: any) => {
-        const decodedVariants = [] as any
+        const decodedVariants = [] as any;
         product.variants.forEach((variant: any) => {
           decodedVariants.push({
             ...variant,
             cleanId: parseInt(decode(variant.id).id, 0),
-          })
-        })
+          });
+        });
 
-        setVariants(decodedVariants)
-        setActiveVariantId(decodedVariants[0].id as string)
-        setAvailable(decodedVariants[0].available)
+        setVariants(decodedVariants);
+        setActiveVariantId(decodedVariants[0].id as string);
+        setAvailable(decodedVariants[0].available);
 
-        if (decodedVariants[0].compareAtPrice) setCompareAtPrice(decodedVariants[0].compareAtPrice)
+        if (decodedVariants[0].compareAtPrice)
+          setCompareAtPrice(decodedVariants[0].compareAtPrice);
 
-        setCheck(false)
-      })
+        setCheck(false);
+      });
     }
-  }, [check])
+  }, [check]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setAdding(true)
-    const attributes = []
+    e.preventDefault();
+    e.stopPropagation();
+    setAdding(true);
+    const attributes = [];
     if (available) {
       addItemToCart(activeVariantId, quantity, attributes).then(() => {
-        setAdding(false)
-      })
+        setAdding(false);
+      });
     }
-  }
+  };
 
   const handleChange = (e: React.FormEvent) => {
-    setActiveVariantId(e.target.value)
-    variants.forEach(variant => {
+    setActiveVariantId(e.target.value);
+    variants.forEach((variant) => {
       if (variant.id === e.target.value) {
         if (variant.compareAtPrice) {
-          setCompareAtPrice(variant.compareAtPrice)
+          setCompareAtPrice(variant.compareAtPrice);
         }
-        setPrice(variant.price)
+        setPrice(variant.price);
       }
-    })
-  }
+    });
+  };
 
-  const handleGiftChange = e => {
+  const handleGiftChange = (e) => {
     setGift({ ...gift, [e.target.name]: e.target.value });
-  }
+  };
 
   return (
-    <div className='container--m'>
+    <div className="container--m">
       <form onSubmit={(e) => handleSubmit(e)} ref={form}>
         {available && !check ? (
-          <div className='x'>
+          <div className="x">
             {variants.length > 1 && (
-              <div className='x'>
-                <select onChange={handleChange} className='x p1'>
-                  {variants.map(({ id, title, vAvailable }: {id: string, title: string, vAvailable: boolean}) => (
-                    <option disabled={!vAvailable} key={id} value={id}>{title}</option>
-                  ))}
+              <div className="x">
+                <select onChange={handleChange} className="x p1">
+                  {variants.map(
+                    ({
+                      id,
+                      title,
+                      vAvailable,
+                    }: {
+                      id: string;
+                      title: string;
+                      vAvailable: boolean;
+                    }) => (
+                      <option disabled={!vAvailable} key={id} value={id}>
+                        {title}
+                      </option>
+                    ),
+                  )}
                 </select>
               </div>
             )}
 
-            <div className='s24 product__form f jcs aist'>
+            <div className="s24 product__form f jcs aist">
               {showQuantity && (
-                <div className='product__form-qty bcw cb bb f jcb aic'>
-                  <div className='f jcc p1 aic product__form-qty-wrapper mxa'>
-                    <button type='button' className='block rel mr05 qty__control no-style s24 = cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
-                    <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb card-qty bn ac' />
-                    <button type='button' className='qty__control no-style s1 block  s24 cursor rel p05 jcc aic' onClick={() => setQuantity(quantity + 1)}>+</button>
+                <div className="product__form-qty bcw cb bb f jcb aic">
+                  <div className="f jcc p1 aic product__form-qty-wrapper mxa">
+                    <button
+                      type="button"
+                      className="block rel mr05 qty__control no-style s24 = cursor p05 aic"
+                      onClick={() =>
+                        quantity === 1 ? null : setQuantity(quantity - 1)
+                      }
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      value={quantity}
+                      onChange={(e) =>
+                        setQuantity(parseInt(e.currentTarget.value, 10))
+                      }
+                      name="quantity"
+                      min="1"
+                      className="cb card-qty bn ac"
+                    />
+                    <button
+                      type="button"
+                      className="qty__control no-style s1 block  s24 cursor rel p05 jcc aic"
+                      onClick={() => setQuantity(quantity + 1)}
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               )}
-              <button type='submit' className='p1 x s1 bcblue cw button--h-black s20 button'>
-                <span>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span>
+              <button
+                type="submit"
+                className="p1 x s1 bcblue cw button--h-black s20 button"
+              >
+                <span>
+                  {adding ? 'Adding' : addText ? addText : 'Add to Cart'}
+                </span>
                 {compareAtPrice && (
-                  <span className='bold s20 ml1 strikethrough'>${parseFloat(compareAtPrice * quantity)}</span>
+                  <span className="bold s20 ml1 strikethrough">
+                    ${parseFloat(compareAtPrice * quantity)}
+                  </span>
                 )}
-                <span className='bold s20 ml1'>
+                <span className="bold s20 ml1">
                   ${parseFloat(price * quantity)}
                 </span>
               </button>
             </div>
           </div>
-        ): (
+        ) : (
           <div>
             {available ? (
               <span>Checking Stock</span>
-            ):
-              waitlist ? (
-                <div className='mt1 pt1'>
-                  <h5>Get notifed when stock is replenished</h5>
-                  <Waitlist
-                    accountId='KKfBYU'
-                    message="Got it! We'll update you when it's back"
-                    buttonText='Notify Me'
-                    variantId={activeVariantId} />
-                </div>
-              ) : (
-                // Left empty for now
-                <div className='ac x bold'>
-                  <span className='small' />
-                </div>
-              )
-            }
+            ) : waitlist ? (
+              <div className="mt1 pt1">
+                <h5>Get notifed when stock is replenished</h5>
+                <Waitlist
+                  accountId="KKfBYU"
+                  message="Got it! We'll update you when it's back"
+                  buttonText="Notify Me"
+                  variantId={activeVariantId}
+                />
+              </div>
+            ) : (
+              // Left empty for now
+              <div className="ac x bold">
+                <span className="small" />
+              </div>
+            )}
           </div>
         )}
       </form>
     </div>
-  )
-}
+  );
+};

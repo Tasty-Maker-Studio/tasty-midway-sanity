@@ -1,7 +1,7 @@
 :root {
   --black: #000;
-  --white : #ffffff;
-  --red: #D8532E;
+  --white: #ffffff;
+  --red: #d8532e;
 
   --blue: #041893;
 }
@@ -21,7 +21,7 @@
 }
 
 .bcblack {
-  background-color: black
+  background-color: black;
 }
 
 .bcblue {

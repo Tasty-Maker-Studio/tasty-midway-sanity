@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export const ErrorHandling = ({error}: {error: string}) => {
+export const ErrorHandling = ({ error }: { error: string }) => {
   return (
     <div className="studio mt1 error">
       <span role="img" aria-label="error">
@@ -8,5 +8,5 @@ export const ErrorHandling = ({error}: {error: string}) => {
       </span>
       : {error}
     </div>
-  )
-}
+  );
+};

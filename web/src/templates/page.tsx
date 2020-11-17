@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { RenderModules } from "src/utils/renderModules";
-import { SEO } from "src/components/SEO";
+import { RenderModules } from 'src/utils/renderModules';
+import { SEO } from 'src/components/SEO';
 
 export interface PageProps {
   pageContext: {
@@ -24,11 +24,11 @@ const Page = ({ path, pageContext, preview = false }: PageProps) => {
     meta,
   } = pageContext;
 
-  const url = slug.current === "home" ? "" : path;
+  const url = slug.current === 'home' ? '' : path;
   return (
     <div className="mt1 x ac">
       {preview && <div className="bcblue ac cw x p1">This is a Preview</div>}
-      <SEO metaInfo={meta} pagePath={url||""} />
+      <SEO metaInfo={meta} pagePath={url || ''} />
       <div className="container--m mxa x al">{RenderModules(modules)}</div>
     </div>
   );

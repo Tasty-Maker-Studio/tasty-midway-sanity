@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Router, RouteComponentProps } from "@reach/router";
+import React, { useState, useEffect, useCallback } from 'react';
+import { Router, RouteComponentProps } from '@reach/router';
 
-import { useLoads } from "react-loads";
+import { useLoads } from 'react-loads';
 
-import Page from "src/templates/page";
-import Product from "src/templates/product";
+import Page from 'src/templates/page';
+import Product from 'src/templates/product';
 
-import sanityClient, { ClientConfig } from "@sanity/client";
+import sanityClient, { ClientConfig } from '@sanity/client';
 
-import { pageQuery, productQuery } from "src/utils/queries";
+import { pageQuery, productQuery } from 'src/utils/queries';
 
 const client = sanityClient({
   projectId: process.env.GATSBY_SANITY_PROJECT_ID,
@@ -46,12 +46,12 @@ const PreviewPage: React.FC<RouteComponentProps<PreviewPageProps>> = ({
     () =>
       client.fetch(queryDraft).then((response: any) => {
         switch (response[0]._type) {
-          case "page":
+          case 'page':
             client.fetch(queryPreviewPage).then((res) => {
               setDoc(res[0]);
             });
             break;
-          case "product":
+          case 'product':
             client.fetch(queryPreviewProduct).then((res) => {
               setDoc(res[0]);
             });
@@ -60,15 +60,15 @@ const PreviewPage: React.FC<RouteComponentProps<PreviewPageProps>> = ({
             break;
         }
       }),
-    []
+    [],
   );
 
   const { error, isResolved, isPending, isReloading, load } = useLoads(
-    "handlePreviewFetch",
+    'handlePreviewFetch',
     handlePreviewFetch as any,
     {
       defer: true,
-    }
+    },
   );
 
   useEffect(() => {
@@ -76,12 +76,12 @@ const PreviewPage: React.FC<RouteComponentProps<PreviewPageProps>> = ({
   }, [0]);
 
   const renderPreview = () => {
-    console.log("[preview.tsx] ----renderPreview      doc=   ", doc);
+    console.log('[preview.tsx] ----renderPreview      doc=   ', doc);
     if (doc) {
       switch (doc._type) {
-        case "page":
+        case 'page':
           return <Page pageContext={doc.content} preview={true} />;
-        case "product":
+        case 'product':
           return <Product pageContext={doc.content} preview={true} />;
         default:
           break;

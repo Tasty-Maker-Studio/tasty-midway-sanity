@@ -8,9 +8,9 @@ export const CollectionMenuItem = S.listItem()
   .title('Collections')
   .icon(Icon)
   .child(
-    S.documentTypeList('collection')
+    S.documentTypeList('shopifyCollection')
       .title('Collections')
-      .menuItems(S.documentTypeList('collection').getMenuItems())
+      .menuItems(S.documentTypeList('shopifyCollection').getMenuItems())
       .filter('_type == $type')
-      .params({ type: 'collection' })
+      .params({ type: 'shopifyCollection' })
   );

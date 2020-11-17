@@ -1,22 +1,22 @@
 export interface ProductInt {
-  _id: string
+  _id: string;
   content: {
     main: {
-      title: string
+      title: string;
       mainImage: {
         asset: {
-          _id: string
-          _ref: string
-        }
-      }
+          _id: string;
+          _ref: string;
+        };
+      };
       slug: {
-        current: string
-      }
-    }
+        current: string;
+      };
+    };
     shopify: {
-      defaultPrice: string
-      productId: number
-    }
-    meta: {}
-  }
+      defaultPrice: string;
+      productId: number;
+    };
+    meta: {};
+  };
 }

@@ -5,38 +5,38 @@
 // spicy overrides
 
 // @ts-ignore
-import ShopifyBuy from 'shopify-buy'
-import LineItem = ShopifyBuy.LineItem
+import ShopifyBuy from 'shopify-buy';
+import LineItem = ShopifyBuy.LineItem;
 
 // @ts-ignore
 export interface ShopifyLineItem extends LineItem {
-  customAttributes: any
-  id: string
-  image: string
-  smallImage: string
+  customAttributes: any;
+  id: string;
+  image: string;
+  smallImage: string;
   variant: {
-    sku: string
-    id: string
-    title: string
-    price: string
+    sku: string;
+    id: string;
+    title: string;
+    price: string;
     image: {
-      src: string
-    }
-  }
-  title: string
-  quantity: number
-  price: string
+      src: string;
+    };
+  };
+  title: string;
+  quantity: number;
+  price: string;
 }
 
-export type ShopifyCartID = string
+export type ShopifyCartID = string;
 
 // @ts-ignore
 export interface ShopifyCart extends ShopifyBuy.Cart {
-  id: ShopifyCartID
-  email: string
-  webUrl: string
-  lineItems: ShopifyLineItem[]
-  totalTax: string
-  shippingLine: null | string
-  totalPrice: string
+  id: ShopifyCartID;
+  email: string;
+  webUrl: string;
+  lineItems: ShopifyLineItem[];
+  totalTax: string;
+  shippingLine: null | string;
+  totalPrice: string;
 }

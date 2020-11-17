@@ -1,5 +1,5 @@
 
-export default {
+export const moduleContent = {
   title: 'Module Content',
   name: 'moduleContent',
   type: 'array',
