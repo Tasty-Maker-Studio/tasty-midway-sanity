@@ -1,20 +1,19 @@
-
 export const moduleContent = {
   title: 'Module Content',
   name: 'moduleContent',
   type: 'array',
   of: [
     {
-      type: 'imageModule'
+      type: 'imageModule',
     },
     {
-      type: 'standardText'
+      type: 'standardText',
     },
     {
-      type: 'productGrid'
+      type: 'productGrid',
     },
     {
-      type: 'nestedPages'
-    }
-  ]
-}
+      type: 'nestedPages',
+    },
+  ],
+};

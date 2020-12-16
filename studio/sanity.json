@@ -21,10 +21,9 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "@sane-shopify/sanity-plugin",
     "@sanity/vision",
     "@sanity/color-input",
-    "video-embed",
+    "dashboard-widget-shopify-sync",
     "media",
     "seo-tools",
     "tabs"
@@ -41,6 +40,22 @@
     {
       "implements": "part:@sanity/form-builder/input/image/asset-sources",
       "path": "./parts/assetSources.ts"
+    },
+    {
+      "name": "part:@sanity/form-builder/input/shopifySelector",
+      "description": "A shopify item selector for Sanity"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/shopifySelector",
+      "path": "index.js"
+    },
+    {
+      "name": "part:@sanity/form-builder/input/shopifySelector/schema",
+      "description": "A shopify item selector for Sanity"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/shopifySelector/schema",
+      "path": "schema.js"
     }
   ]
 }

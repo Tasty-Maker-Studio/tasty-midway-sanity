@@ -1,88 +1,128 @@
-import { Rule } from '@sanity/validation'
+import { Rule } from '@sanity/validation';
+import {
+  getReferencedDocument,
+} from '../utils';
+import {getFieldConfig} from "../../plugins/dashboard-widget-shopify-sync/widget/utils";
 
-
-export const productModule  = {
+export const productModule = {
   title: 'Product Content',
   name: 'productModule',
   type: 'object',
-  fieldsets: [
-    {
-      name: 'modules',
-      title: 'Product Modules',
-      options: {
-        collapsible: true,
-        collapsed: true
-      }
-    },
-    {
-      name: 'main',
-      title: 'Product Main Content',
-      options: {
-        collapsible: true,
-        collapsed: true
-      }
-    }
-  ],
+  // options: {
+  //   collapsible: true,
+  //   collapsed: true,
+  // },
+  // fieldsets: [
+  //   {
+  //     name: 'modules',
+  //     title: 'Product Modules',
+  //     options: {
+  //       collapsible: true,
+  //       collapsed: true,
+  //     },
+  //   },
+  //   {
+  //     name: 'main',
+  //     title: 'Product Main Content',
+  //     options: {
+  //       collapsible: true,
+  //       collapsed: true,
+  //     },
+  //   },
+  // ],
   fields: [
+    { title: 'Title', name: 'title', type: 'string', readOnly: true },
+    { title: 'Custom Title', name: 'customTitle', type: 'string' },
+    { title: 'Shopify Id', name: 'shopifyId', type: 'string', readOnly: true },
+    { name: 'availableForSale', title: 'Available for Sale', type: 'boolean' },
+    { name: 'createdAt', type: 'date', readOnly: true },
+    { name: 'publishedAt', type: 'date', readOnly: true },
+    { title: 'Max Variant', name: 'maxVariantPrice', type: 'number', readOnly: true },
+    { title: 'Min Variant', name: 'minVariantPrice', type: 'number', readOnly: true },
     {
-      name: 'title',
-      title: 'Title',
-      type: 'string'
+      name: 'priceRange',
+      title: 'Price Range',
+      hidden: true,
+      type: 'shopifySourceProductPriceRange',
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      readOnly: true,
-      description: 'This has to stay in sync with Shopify',
-      options: {
-        source: 'content.main.title',
-        maxLength: 96
-      },
-      validation: (Rule: Rule) => Rule.required()
+      name: 'presentmentPriceRanges',
+      title: 'Presentment Price Ranges',
+      hidden: true,
+      type: 'shopifySourceProductPresentmentPriceRangeConnection',
     },
     {
-      name: 'linkedSite',
-      title: 'Linked Site Url',
-      description: 'This is a fake product so link to the real site!',
-      type: 'url'
+      title: 'Product Images',
+      name: 'images',
+      type: 'productGalleryImage',
     },
     {
-      name: 'linkedSiteName',
-      title: 'Linked Site Name',
-      description: 'Linked Site Title',
-      type: 'string'
+      name: 'productType',
+      title: 'Product Type',
+      type: 'string',
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
-      options: {
-        hotspot: true
-      },
-      fieldset: 'main',
-      validation: (Rule: Rule) => Rule.required()
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
     },
-    // {
-    //   name: 'productImages',
-    //   title: 'Product Images',
-    //   type: 'array',
-    //   of: [ { type: 'productGalleryImage' } ],
-    //   validation: Rule => Rule.custom(productImages => {
-    //     return  productImages !== null
-    //   }),
-    // },
-
     {
+      title: 'Handle',
+      name: 'handle',
+      type: 'string',
+    },
+    {
+      title: 'Description',
       name: 'description',
-      title: 'Product Description',
+      type: 'text',
+      hidden: true,
+    },
+    {
+      title: 'Description (HTML)',
+      name: 'descriptionHtml',
       type: 'blockContent',
     },
     {
-      name: 'modules',
-      title: 'Modules',
-      type: 'moduleContent',
-      fieldset: 'modules'
-    }
+      title: 'Vendor',
+      name: 'vendor',
+      type: 'string',
+      hidden: true,
+    },
+    {
+      title: 'ID',
+      name: 'id',
+      type: 'string',
+      hidden: true,
+    },
+    {
+      title: 'Options',
+      name: 'options',
+      type: 'array',
+      of: [{ type: 'shopifyProductOption' }],
+    },
+    {
+      title: 'Variants',
+      name: 'variants',
+      type: 'array',
+      of: [{ type: 'shopifyProductVariant' }],
+      sortable: true,
+    },
+    {
+      title: 'Collections',
+      name: 'collections',
+      type: 'linkedCollections'
+    },
+    {
+      name: 'sourceData',
+      type: 'shopifySourceProduct',
+      hidden: true
+    },
+        // {
+        //   name: 'modules',
+        //   title: 'Modules',
+        //   type: 'moduleContent',
+        //   fieldset: 'modules',
+        // },
   ]
-}
+};

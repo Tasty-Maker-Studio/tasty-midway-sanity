@@ -11,11 +11,12 @@ const Icon = () => <Emoji style={{ fontSize: '2rem' }} symbol='🛍️' />
 export const ProductMenuItem = S.listItem()
   .title('Products')
   .icon(Icon)
+  .schemaType("shopifyProduct")
   .child(
     S.documentTypeList('shopifyProduct')
       .title('List of Products')
       .menuItems(S.documentTypeList('shopifyProduct').getMenuItems())
-      .filter('_type == $type && subscription != true')
+      .filter('_type == $type && archive != false')
       .params({ type: 'shopifyProduct' })
       .child((documentId:string) =>{
         return ( S.document()

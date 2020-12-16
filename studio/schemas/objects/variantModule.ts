@@ -1,4 +1,4 @@
-export const variantModule  = {
+export const variantModule = {
   title: 'Variant Content',
   name: 'variantModule',
   type: 'object',
@@ -8,44 +8,44 @@ export const variantModule  = {
       title: 'Variant Modules',
       options: {
         collapsible: true,
-        collapsed: true
-      }
+        collapsed: true,
+      },
     },
     {
       name: 'main',
       title: 'Variant Main Content',
       options: {
         collapsible: true,
-        collapsed: true
-      }
-    }
+        collapsed: true,
+      },
+    },
   ],
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      fieldset: 'main'
+      fieldset: 'main',
     },
     {
       name: 'variantDescription',
       title: 'Variant Description',
       type: 'blockContent',
-      fieldset: 'main'
+      fieldset: 'main',
     },
     {
       name: 'modules',
       title: 'Modules',
       type: 'moduleContent',
-      fieldset: 'modules'
-    }
-  ]
-}
+      fieldset: 'modules',
+    },
+  ],
+};

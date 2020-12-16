@@ -1,11 +1,20 @@
+import {declareClass} from "@babel/types";
+
 declare module '@sanity/desk-tool/structure-builder';
+declare module '@sanity/base/lib';
+declare module '@good-idea/unwind-edges';
+declare module  '@good-idea/leaky-bucket';
 declare module 'part:@sanity/base/schema-creator';
 declare module 'part:@sanity/base/client';
 declare module 'part:@sanity/form-builder';
-declare module 'part:@sanity/form-builder/input/video-embed/schema';
+declare module 'part:@sanity/form-builder/patch-event';
 declare module 'part:sanity-plugin-media/asset-source';
 declare module 'all:part:@sanity/base/schema-type';
 declare module 'part:@sanity/components/buttons/default';
+declare module 'part:@sanity/components/fields/default';
+declare module 'part:@sanity/components/fieldsets/default';
+declare module 'part:@sanity/components/formfields/default';
+declare module 'part:@sanity/components/textinputs/default';
 declare module 'part:@sanity/components/lists/sortable';
 declare module '*.css';
 declare module '*.svg';

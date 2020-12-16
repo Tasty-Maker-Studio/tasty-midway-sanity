@@ -1,42 +1,21 @@
-import { TiDocument } from 'react-icons/ti'
-
 export const page = {
-  title: 'Pages',
   name: 'page',
+  title: 'Page',
   type: 'document',
-  icon: TiDocument,
+  liveEdit: false,
+  // You probably want to uncomment the next line once you've made the pages documents in the Studio. This will remove the pages document type from the create-menus.
+  // __experimental_actions: ['update', 'publish', /* 'create', 'delete' */],
   fields: [
     {
-      title: 'Page Title',
-      name: 'title',
-      type: 'string',
+      name: 'shopifyProduct',
+      type: 'pageContent',
     },
-   // { name: 'slug', type: 'pageSlug' },
-    // {
-    //   title: 'Banner',
-    //   name: 'hero',
-    //   type: 'hero',
-    // },
-    {
-      name: 'content',
-      title: 'Text',
-      type: 'array',
-      of: [{ type: 'block' }, { type: 'videoEmbed' }, { type: 'richImage' }],
-    },
-    // {
-    //   name: 'gallery',
-    //   title: 'Gallery',
-    //   type: 'array',
-    //   of: [{ type: 'richImage' }],
-    // },
-    // {
-    //   name: 'includeInstagram',
-    //   title: 'Include Instagram links',
-    //   type: 'boolean',
-    // },
-    // {
-    //   name: 'seo',
-    //   type: 'seo',
-    // },
   ],
-}
+  preview: {
+    select: {
+      title: 'shopifyProduct.title',
+      subtitle: 'heroText',
+      media: 'mainImage',
+    },
+  },
+};

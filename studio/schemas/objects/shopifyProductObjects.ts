@@ -209,13 +209,18 @@ export const shopifyProductOption = {
   },
 };
 
-
-
 export const shopifyProductVariant = {
   title: 'Product Variant',
   name: 'shopifyProductVariant',
   type: 'object',
   fields: [
+    {
+      name: 'id',
+      title: 'Variant ID',
+      type: 'string',
+      hidden: true,
+      readOnly: true,
+    },
     {
       name: 'shopifyVariantID',
       title: 'Variant ID',
@@ -228,13 +233,25 @@ export const shopifyProductVariant = {
       type: 'string',
       readOnly: true,
     },
+
+    { name: 'sourceData',
+      type: 'shopifySourceProductVariant',
+      hidden: true
+    },
   ],
   preview: {
     select: {
       title: 'title',
+      imageUrl: 'sourceData.image'
     },
-  }
-}
+    prepare: ({title, imageUrl}) => {
+      return {
+        title: title,
+        imageUrl: imageUrl.w100
+      }
+    },
+  },
+};
 
 export const shopifyProductOptionValue = {
   title: 'Option Value',
@@ -245,14 +262,14 @@ export const shopifyProductOptionValue = {
       name: 'value',
       title: 'Value',
       type: 'string',
-    }
+    },
   ],
   preview: {
     select: {
       title: 'value',
     },
-  }
-}
+  },
+};
 
 export const shopifySourceProduct = {
   title: 'Shopify Product Data',
@@ -337,6 +354,128 @@ export const shopifySourceProduct = {
       name: 'collections',
       type: 'shopifySourceCollectionsConnection',
       hidden: true,
+    },
+  ],
+};
+
+
+
+export const shopifyCollectionSource = {
+  title: 'Shopify Data',
+  readOnly: true,
+  name: 'shopifySourceCollection',
+  type: 'object',
+  options: {
+    collapsible: true,
+    collapsed: true,
+  },
+  fields: [
+    { title: 'Title', name: 'title', type: 'string' },
+    {
+      title: 'Handle',
+      name: 'handle',
+      type: 'string',
+      hidden: true,
+    },
+    {
+      title: 'Description',
+      name: 'description',
+      type: 'text',
+      rows: 3,
+    },
+    {
+      title: 'Description (HTML)',
+      name: 'descriptionHtml',
+      type: 'text',
+      rows: 3,
+      hidden: true,
+    },
+    {
+      title: 'ID',
+      name: 'id',
+      type: 'string',
+      hidden: true,
+    },
+    {
+      title: 'Image',
+      name: 'image',
+      type: 'shopifySourceImage',
+      hidden: true,
+    },
+    {
+      title: 'Products',
+      name: 'products',
+      type: 'shopifySourceProductsConnection',
+      hidden: true,
+    },
+  ],
+}
+
+
+export const shopifySourceProductPriceRangeEdge = {
+  name: 'shopifySourceProductPriceRangeEdge',
+  type: 'object',
+  fields: [
+    {
+      name: 'cursor',
+      type: 'string',
+    },
+    { name: 'node', type: 'shopifySourceProductPriceRange' },
+  ],
+}
+
+export const shopifySourceProductPresentmentPriceRangeConnection = {
+  name: 'shopifySourceProductPresentmentPriceRangeConnection',
+  type: 'object',
+  fields: [
+    {
+      name: 'edges',
+      type: 'array',
+      of: [{ type: 'shopifySourceProductPriceRangeEdge' }],
+    },
+  ],
+}
+
+export const shopifySourceProductEdge = {
+  name: 'shopifySourceProductEdge',
+  type: 'object',
+  fields: [
+    {
+      name: 'cursor',
+      type: 'string',
+      title: 'Cursor',
+    },
+    {
+      name: 'node',
+      type: 'shopifySourceProductNode',
+    },
+  ],
+}
+export const shopifySourceProductNode = {
+  name: 'shopifySourceProductNode',
+  type: 'object',
+  fields: [
+    { name: 'handle', type: 'string' },
+    { name: 'id', type: 'string' },
+  ],
+}
+
+export const shopifySourceProductsConnection = {
+  name: 'shopifySourceProductsConnection',
+  type: 'object',
+  fields: [
+    {
+      name: 'pageInfo',
+      type: 'pageInfo',
+    },
+    {
+      name: 'edges',
+      type: 'array',
+      of: [
+        {
+          type: 'shopifySourceProductEdge',
+        },
+      ],
     },
   ],
 }

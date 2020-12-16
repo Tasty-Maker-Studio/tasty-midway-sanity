@@ -1,40 +1,34 @@
-import Tabs from 'sanity-plugin-tabs'
-import {unwindEdges} from "@good-idea/unwind-edges";
+import Tabs from 'sanity-plugin-tabs';
+import { unwindEdges } from '@good-idea/unwind-edges';
 
 export const shopifyCollection = {
   name: 'shopifyCollection',
-  title: 'Collection',
+  title: 'Shopify Collection',
   type: 'document',
   fields: [
     {
-      title: 'Title',
-      name: 'title',
-      type: 'string',
+      name: 'content',
+      type: 'collectionContent',
     },
     {
-      title: 'Page URI',
-      name: 'handle',
-      type: 'string',
-    },
-    {
-      title: 'Shopify ID',
-      name: 'shopifyId',
-      type: 'string',
-    },
+      name: "shopifyId",
+      type: "string",
+      hidden: true,
+    }
   ],
   preview: {
     select: {
-      title: 'title',
-      imageUrl: 'sourceData.image',
+      title: 'content.main.title',
+      imageUrl: 'content.main.sourceData.image',
     },
     prepare: (props) => {
-      const {title, imageUrl} = props
+      const { title, imageUrl } = props;
       // @ts-ignore
-      const src = imageUrl?.w100;
+      const src = imageUrl.originalSrc;
       return {
         title,
-        imageUrl: src
-      }
+        imageUrl: src,
+      };
     },
-  }
-}
+  },
+};

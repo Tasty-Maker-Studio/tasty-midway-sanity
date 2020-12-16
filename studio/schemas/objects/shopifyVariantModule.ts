@@ -1,5 +1,4 @@
-
-export const shopifyVariantModule  = {
+export const shopifyVariantModule = {
   title: 'Shopify Variant Content',
   name: 'shopifyVariantModule',
   type: 'object',
@@ -9,20 +8,20 @@ export const shopifyVariantModule  = {
       title: 'Default Variant',
       options: {
         collapsible: true,
-        collapsed: true
-      }
-    }
+        collapsed: true,
+      },
+    },
   ],
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'variantTitle',
       title: 'Variant Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'id',
@@ -30,7 +29,7 @@ export const shopifyVariantModule  = {
       type: 'string',
       description: 'This comes from Shopify and cannot be changed',
       readOnly: true,
-      hidden: true
+      hidden: true,
     },
     {
       name: 'productId',
@@ -38,7 +37,7 @@ export const shopifyVariantModule  = {
       type: 'number',
       description: 'This comes from Shopify and cannot be changed',
       readOnly: true,
-      hidden: true
+      hidden: true,
     },
     {
       name: 'variantId',
@@ -46,26 +45,26 @@ export const shopifyVariantModule  = {
       type: 'number',
       description: 'This comes from Shopify and cannot be changed',
       readOnly: true,
-      hidden: true
+      hidden: true,
     },
     {
       name: 'price',
       title: 'Price',
       type: 'string',
       description: 'This comes from Shopify and cannot be changed',
-      readOnly: true
+      readOnly: true,
     },
     {
       name: 'sku',
       title: 'SKU',
       type: 'string',
       description: 'This comes from Shopify and cannot be changed',
-      readOnly: true
+      readOnly: true,
     },
     {
       name: 'productDescription',
       title: 'Product Description',
-      type: 'blockContent'
+      type: 'blockContent',
     },
-  ]
-}
+  ],
+};
